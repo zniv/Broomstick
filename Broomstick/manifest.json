@@ -1,0 +1,20 @@
+{
+
+  "title": "Broomstick",
+  "author": "Zniv",
+  "description": "Broomstick",
+  "version": "0.1",
+  "credits": "",
+  "color": "FF0000",
+  "namespace": "Broomstick",
+  "dll": "Broomstick.dll",
+  "decks": {
+    "heroes": [],
+    "villains": [],
+    "teamVillains": [],
+    "environments": []
+  },
+  "variants": {
+    "Bunker": [ "WaywardBunkerCharacter" ]
+  }
+}
