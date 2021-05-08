@@ -12,34 +12,6 @@ namespace BroomstickTest
     [TestFixture()]
     public class Test : BaseTest
     {
-        [Test()]
-        public void TestModWorks()
-        {
-
-            Assert.AreEqual(3, this.GameController.TurnTakerControllers.Count());
-
-            Assert.IsNotNull(env);
-
-
-            StartGame();
-
-            AssertIsInPlay("SmashBackField");
-
-            // Always deals 5 psychic to non villains!
-            PlayCard("FireEverything");
-
-            QuickHPCheck(0, -6); // Nemesis!
-
-            PlayTopCard(env);
-
-            // Deals 1 damage
-            QuickHPCheck(-1, -1);
-
-            // Heals 1 at the start of the environment turn
-            GoToStartOfTurn(env);
-            QuickHPCheck(1, 1);
-        }
-
 
         [Test()]
         public void TestBunkerVariant()
@@ -58,6 +30,28 @@ namespace BroomstickTest
             QuickHandStorage(bunker);
             UsePower(bunker);
             QuickHandCheck(2);
+        }
+
+        [Test()]
+        public void TestExpatrietteVariant()
+        {
+            SetupGameController("BaronBlade", "Expatriette/Broomstick.LoadedExpatrietteCharacter", "Megalopolis");
+
+            StartGame();
+
+            Assert.IsTrue(expatriette.CharacterCard.IsPromoCard);
+            Assert.AreEqual("LoadedExpatrietteCharacter", expatriette.CharacterCard.PromoIdentifierOrIdentifier);
+            Assert.AreEqual(28, expatriette.CharacterCard.MaximumHitPoints);
+
+            Assert.AreEqual(null, expatriette.CharacterCardController.GetCardPropertyJournalEntryInteger("ExpatExtraLoadedTotalPowerCount"));
+
+            GoToUsePowerPhase(expatriette);
+
+            QuickHandStorage(expatriette);
+            UsePower(expatriette);
+            QuickHandCheck(-1);
+
+            Assert.AreEqual(1, expatriette.CharacterCardController.GetCardPropertyJournalEntryInteger("ExpatExtraLoadedTotalPowerCount"));
         }
     }
 }

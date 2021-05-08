@@ -15,6 +15,7 @@
     "environments": []
   },
   "variants": {
-    "Bunker": [ "WaywardBunkerCharacter" ]
+    "Bunker": [ "WaywardBunkerCharacter" ],
+    "Expatriette": [ "LoadedExpatrietteCharacter" ]
   }
 }

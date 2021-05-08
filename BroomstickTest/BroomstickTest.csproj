@@ -12,8 +12,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AFE958F0-3C90-4493-A425-48A660B58E76}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MyModTest</RootNamespace>
-    <AssemblyName>MyModTest</AssemblyName>
+    <RootNamespace>BroomstickTest</RootNamespace>
+    <AssemblyName>BroomstickTest</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,8 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Broomstick\Broomstick.csproj">
-      <Project>{44F8C838-553C-482C-B389-2B375B8590C9}</Project>
-      <Name>MyMod</Name>
+      <Project>{44f8c838-553c-482c-b389-2b375b8590c9}</Project>
+      <Name>Broomstick</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
