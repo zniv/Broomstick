@@ -9,7 +9,7 @@
   "namespace": "Athame",
   "dll": "Athame.dll",
   "decks": {
-    "heroes": [],
+    "heroes": [ "LeBourreau" ],
     "villains": [],
     "teamVillains": [],
     "environments": []

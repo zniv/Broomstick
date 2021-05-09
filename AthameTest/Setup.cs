@@ -1,9 +1,9 @@
-﻿using System;
-using NUnit.Framework;
-using System.Reflection;
-using Handelabra.Sentinels.Engine.Model;
+﻿using Athame.LeBourreau;
 using Handelabra;
-using Athame.Expatriette;
+using Handelabra.Sentinels.Engine.Model;
+using NUnit.Framework;
+using System;
+using System.Reflection;
 
 namespace AthameTest
 {
@@ -19,7 +19,7 @@ namespace AthameTest
 
             // Tell the engine about our mod assembly so it can load up our code.
             // It doesn't matter which type as long as it comes from the mod's assembly.
-             var a = Assembly.GetAssembly(typeof(LoadedExpatrietteCharacterCardController)); // replace with your own type
+            var a = Assembly.GetAssembly(typeof(LeBourreauCharacterCardController)); // replace with your own type
             ModHelper.AddAssembly("Athame", a); // replace with your own namespace
         }
 

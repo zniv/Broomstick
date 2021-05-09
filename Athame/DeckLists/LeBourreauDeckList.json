@@ -1,0 +1,110 @@
+﻿{
+  "name": "Le Bourreau",
+  "sortName": "Bourreau",
+  "kind": "Hero",
+  "initialCardIdentifiers": [
+    "LeBourreauCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "LeBourreauCharacter",
+      "count": 1,
+      "title": "Le Bourreau",
+      "body": "Execute",
+      "backgroundColor": "fbf8f9",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointsColor": "C94742",
+      "character": true,
+      "powers": [
+        "Destroy a target with 2 or less hitpoints."
+      ],
+      "icons": [
+        "HasPower",
+        "Destroy"
+      ],
+      "hitpoints": 33,
+      "nemesisIdentifiers": [
+        "Athame.LeBourreau"
+      ],
+      "incapacitatedAbilities": [
+        "One player may play a card.",
+        "One hero may use a power.",
+        "One player may draw a card."
+      ],
+      "flippedIcons": [
+        "PlayCardNow",
+        "UsePowerNow",
+        "DrawCardNow"
+      ],
+      "openingLines": {
+        "default": "One last word ?"
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "Gallows",
+      "count": 20,
+      "title": "Gallows",
+      "keywords": [
+        "device"
+      ],
+      "hitpoints": 10,
+      "body": [
+        "When played move a non-character non-hero non-device non-component target next to it.",
+        "Card next to this one has no text.",
+        "At the start of your turn, this card deals X melee damage to the target next to it where X is the half of that target's current HP (round up)."
+      ],
+      "icons": [
+        "DealDamage"
+      ],
+      "flavorText": "Not too tight ?"
+    },
+    {
+      "identifier": "LifeTakerBurden",
+      "count": 10,
+      "title": "Life taker burden",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "body": [
+        "Whenever a {LeBourreau}'s card destroys a target then {LeBourreau} deals himself 1 irrectuctible psychic damage",
+        "For each damage taken this way add a token to this card.",
+        "Whenever {LeBourreau} would be dealt damage, you may remove 4 tokens to prevent it."
+      ],
+      "icons": [
+        "AddTokens",
+        "DealDamage",
+        "CancelledDamageGreen"
+      ],
+      "flavorText": "My suffering is my armour !",
+      "tokenPools": [
+        {
+          "identifier": "LifeTakerBurdenPool",
+          "name": "Life taker burden pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "e2498a"
+        }
+      ]
+    },
+    {
+      "identifier": "ATasteOfAfterlife",
+      "count": 10,
+      "title": "A taste of afterlife",
+      "keywords": [
+        "ongoing"
+      ],
+      "body": [
+        "When played, {LeBourreau} kills another hero.",
+        "When this card leaves play, flip that killed hero, set her hitpoints to half her maximum hitpoints (round up) and that hero's player draws 6 cards.",
+        "At the start of your turn, this card is removed from the game."
+      ],
+      "icons": [
+        "Destroy",
+        "GainHP"
+      ],
+      "flavorText": "Just play dead !"
+    }
+  ]
+}
