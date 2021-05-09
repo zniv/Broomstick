@@ -17,7 +17,7 @@ using Handelabra;
 using Boomlagoon.JSON;
 using System.Xml.XPath;
 
-namespace Handelabra.BroomstickConsole // this has to be this way to work around an EngineCommon issue, will be fixed soon.
+namespace Handelabra.AthameConsole // this has to be this way to work around an EngineCommon issue, will be fixed soon.
 {
     // Loading a game in "friendly mode" throws an exception so we can get out of wherever we were.
     class LoadGameException : Exception

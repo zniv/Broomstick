@@ -4,7 +4,7 @@ using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Broomstick.Expatriette
+namespace Athame.Expatriette
 {
     public class LoadedExpatrietteCharacterCardController : HeroCharacterCardController
     {

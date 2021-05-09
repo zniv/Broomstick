@@ -1,13 +1,13 @@
 {
 
-  "title": "Broomstick",
+  "title": "Athame",
   "author": "Zniv",
-  "description": "Broomstick",
+  "description": "Athame",
   "version": "0.1",
   "credits": "",
   "color": "FF0000",
-  "namespace": "Broomstick",
-  "dll": "Broomstick.dll",
+  "namespace": "Athame",
+  "dll": "Athame.dll",
   "decks": {
     "heroes": [],
     "villains": [],

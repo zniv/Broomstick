@@ -12,8 +12,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AFE958F0-3C90-4493-A425-48A660B58E76}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>BroomstickTest</RootNamespace>
-    <AssemblyName>BroomstickTest</AssemblyName>
+    <RootNamespace>AthameTest</RootNamespace>
+    <AssemblyName>AthameTest</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Broomstick\Broomstick.csproj">
+    <ProjectReference Include="..\Athame\Athame.csproj">
       <Project>{44f8c838-553c-482c-b389-2b375b8590c9}</Project>
-      <Name>Broomstick</Name>
+      <Name>Athame</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

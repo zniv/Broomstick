@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{44F8C838-553C-482C-B389-2B375B8590C9}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Broomstick</RootNamespace>
-    <AssemblyName>Broomstick</AssemblyName>
+    <RootNamespace>Athame</RootNamespace>
+    <AssemblyName>Athame</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -27,7 +27,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DeployToSotM|AnyCPU'">
-    <OutputPath>I:\Steam\SteamApps\common\Sentinels of the Multiverse\mods\Broomstick\</OutputPath>
+    <OutputPath>I:\Steam\SteamApps\common\Sentinels of the Multiverse\mods\Athame\</OutputPath>
     <Optimize>true</Optimize>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
@@ -60,6 +60,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="LeBourreau\LeBourreauDeckList.json" />
     <None Include="manifest.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

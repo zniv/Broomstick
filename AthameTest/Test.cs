@@ -7,7 +7,7 @@ using System.Collections;
 using Handelabra.Sentinels.UnitTest;
 using System.Collections.Generic;
 
-namespace BroomstickTest
+namespace AthameTest
 {
     [TestFixture()]
     public class Test : BaseTest
@@ -16,7 +16,7 @@ namespace BroomstickTest
         [Test()]
         public void TestBunkerVariant()
         {
-            SetupGameController("BaronBlade", "Bunker/Broomstick.WaywardBunkerCharacter", "Megalopolis");
+            SetupGameController("BaronBlade", "Bunker/Athame.WaywardBunkerCharacter", "Megalopolis");
 
             StartGame();
 
@@ -35,7 +35,7 @@ namespace BroomstickTest
         [Test()]
         public void TestExpatrietteVariant()
         {
-            SetupGameController("BaronBlade", "Expatriette/Broomstick.LoadedExpatrietteCharacter", "Megalopolis");
+            SetupGameController("BaronBlade", "Expatriette/Athame.LoadedExpatrietteCharacter", "Megalopolis");
 
             StartGame();
 

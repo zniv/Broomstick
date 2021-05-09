@@ -3,7 +3,7 @@ using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
 
-namespace Broomstick.Bunker
+namespace Athame.Bunker
 {
     public class WaywardBunkerCharacterCardController : HeroCharacterCardController
     {
