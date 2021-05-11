@@ -7,7 +7,9 @@ namespace Athame.LeBourreau
 {
     public class ATasteOfAfterlifeCardController : CardController
     {
-        private CardController KilledHero = null;
+        //private CardController KilledHero = null;
+        private Card KilledHeroCard = null;
+        private int KilledHeroMaxHP = -1;
         public ATasteOfAfterlifeCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
         }
@@ -15,8 +17,8 @@ namespace Athame.LeBourreau
         public override IEnumerator Play()
         {
             // When played kill another hero.
-            List<DestroyCardAction>  storedResultsAction = new List<DestroyCardAction>();
-            var coroutine = this.GameController.SelectAndDestroyCard(this.DecisionMaker, new LinqCardCriteria(c => c.IsHeroCharacterCard && c != this.CharacterCard), true, storedResultsAction);
+            List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
+            var coroutine = this.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.CharacterCard, new LinqCardCriteria(c => c.IsHeroCharacterCard && c != this.CharacterCard), storedResults, true);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
@@ -26,13 +28,21 @@ namespace Athame.LeBourreau
                 base.GameController.ExhaustCoroutine(coroutine);
             }
 
-            System.Console.WriteLine(">>>>>>>>>>>>>>>< storedResultsAction " + storedResultsAction);
-
-
-            if (DidDestroyCard(storedResultsAction))
+            if (DidSelectCard(storedResults))
             {
-                this.KilledHero = storedResultsAction.Find(a => a.CardToDestroy != null).CardToDestroy;
-                System.Console.WriteLine(">>>>>>>>>>>>>>>< this.KilledHero " + this.KilledHero);
+                var selectDecision = storedResults.Find(a => a.SelectedCard != null);
+                this.KilledHeroCard = selectDecision?.SelectedCard;
+                System.Console.WriteLine(">>>>>>>>>>>>>>>>>>> this.KilledHeroCard " + this.KilledHeroCard);
+                this.KilledHeroMaxHP = this.KilledHeroCard.MaximumHitPoints.Value;
+                coroutine = this.GameController.DestroyCard(this.DecisionMaker, this.KilledHeroCard);
+                if (base.UseUnityCoroutines)
+                {
+                    yield return base.GameController.StartCoroutine(coroutine);
+                }
+                else
+                {
+                    base.GameController.ExhaustCoroutine(coroutine);
+                }
             }
 
             yield break;
@@ -42,15 +52,17 @@ namespace Athame.LeBourreau
         public override void AddTriggers()
         {
             // When this card leaves play, flip that killed hero, set her hitpoints to half her maximum hitpoints (round up) and that hero's player draws 6 cards.
-            AddTrigger<MoveCardAction>(a => this.KilledHero != null && a.CardToMove == this.Card && !a.Destination.IsInPlay, ResurrectResponse, TriggerType.FlipCard, TriggerTiming.After);
+            //AddTrigger<MoveCardAction>(a => this.KilledHero != null && a.CardToMove == this.Card && !a.Destination.IsInPlay, ResurrectResponse, TriggerType.FlipCard, TriggerTiming.Before);
+            AddTrigger<MoveCardAction>(a => this.KilledHeroCard != null && a.CardToMove == this.Card && !a.Destination.IsInPlay, ResurrectResponse, TriggerType.FlipCard, TriggerTiming.Before);
 
             // At the start of your turn, this card is removed from the game.
-            AddStartOfTurnTrigger(tt => tt == this.HeroTurnTaker, RemoveFromGameResponse, TriggerType.RemoveFromGame);
+            AddStartOfTurnTrigger(tt => tt == this.HeroTurnTaker && this.Card.IsInPlay, RemoveFromGameResponse, TriggerType.RemoveFromGame);
         }
 
         private IEnumerator ResurrectResponse(MoveCardAction action)
         {
-            IEnumerator coroutine = this.GameController.FlipCard(this.KilledHero);
+            var killedHero = this.FindCardController(this.KilledHeroCard);
+            IEnumerator coroutine = this.GameController.FlipCard(killedHero,true,true);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
@@ -60,8 +72,10 @@ namespace Athame.LeBourreau
                 base.GameController.ExhaustCoroutine(coroutine);
             }
 
-            var halfHP = this.KilledHero.Card.MaximumHitPoints.Value / 2 + this.KilledHero.Card.MaximumHitPoints.Value % 2;
-            coroutine = this.GameController.SetHP(this.KilledHero.Card, halfHP, this.GetCardSource());
+            var halfHP = this.KilledHeroMaxHP/ 2 + this.KilledHeroMaxHP % 2;
+            System.Console.WriteLine(">>>>>>>>>>>>>>>>>>> this.KilledHeroCard 2 " + this.KilledHeroCard);
+            this.KilledHeroCard.SetMaximumHP(this.KilledHeroMaxHP,false);
+            coroutine = this.GameController.SetHP(this.KilledHeroCard, halfHP, this.GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
@@ -71,7 +85,7 @@ namespace Athame.LeBourreau
                 base.GameController.ExhaustCoroutine(coroutine);
             }
 
-            coroutine = this.GameController.DrawCards(this.KilledHero.HeroTurnTakerController, 6);
+            coroutine = this.GameController.DrawCards(killedHero.HeroTurnTakerController, 6);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
